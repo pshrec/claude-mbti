@@ -1,9 +1,15 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { LandingPage, TestPage, LoadingPage, ResultPage, StatsPage } from './pages';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  LandingPage,
+  TestPage,
+  LoadingPage,
+  ResultPage,
+  StatsPage,
+} from "./pages";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/test" element={<TestPage />} />
