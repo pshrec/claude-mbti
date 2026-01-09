@@ -8,7 +8,7 @@ interface LayoutProps {
 export function Layout({ children, className = '' }: LayoutProps) {
   return (
     <div className={`min-h-screen ${className}`}>
-      <main className="max-w-lg mx-auto px-4 py-8">
+      <main className="max-w-lg mx-auto px-6 py-12 md:py-16">
         {children}
       </main>
     </div>

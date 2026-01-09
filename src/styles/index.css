@@ -5,47 +5,86 @@
 @layer base {
   html {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
-    @apply bg-gray-50 text-gray-900 antialiased;
+    @apply bg-neutral-50 text-neutral-900 antialiased;
+  }
+
+  /* 굵은 타이포그래피 시스템 */
+  h1, h2, h3, h4 {
+    @apply font-semibold tracking-tight;
   }
 }
 
 @layer components {
+  /* 미니멀 버튼 - 기본 */
+  .btn {
+    @apply px-6 py-3.5 font-medium rounded-xl transition-all duration-200
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  /* 프라이머리 버튼 - 검정 배경 */
   .btn-primary {
-    @apply px-6 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold rounded-xl
-           shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200
-           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+    @apply btn bg-neutral-900 text-white
+           hover:bg-neutral-800 active:scale-[0.98];
   }
 
+  /* 세컨더리 버튼 - 아웃라인 */
   .btn-secondary {
-    @apply px-6 py-3 bg-white text-gray-700 font-semibold rounded-xl border border-gray-200
-           shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200
-           active:scale-95;
+    @apply btn bg-white text-neutral-900 border border-neutral-200
+           hover:border-neutral-400 hover:bg-neutral-50 active:scale-[0.98];
   }
 
+  /* 고스트 버튼 */
+  .btn-ghost {
+    @apply btn bg-transparent text-neutral-600
+           hover:text-neutral-900 hover:bg-neutral-100;
+  }
+
+  /* 미니멀 카드 */
   .card {
-    @apply bg-white rounded-2xl shadow-md p-6;
+    @apply bg-white rounded-2xl p-8 border border-neutral-100;
   }
 
+  /* 옵션 버튼 */
   .option-button {
-    @apply w-full p-5 text-left bg-white rounded-xl border-2 border-gray-200
-           hover:border-primary-400 hover:bg-primary-50 transition-all duration-200
-           active:scale-[0.98] cursor-pointer;
+    @apply w-full p-6 text-left bg-white rounded-xl border border-neutral-200
+           hover:border-neutral-400 transition-all duration-200
+           active:scale-[0.99] cursor-pointer;
   }
 
   .option-button.selected {
-    @apply border-primary-500 bg-primary-50 ring-2 ring-primary-200;
+    @apply border-neutral-900 bg-neutral-50;
   }
 }
 
 @layer utilities {
-  .gradient-bg {
-    @apply bg-gradient-to-br from-primary-500 via-primary-400 to-secondary-500;
+  /* 미니멀 텍스트 색상 */
+  .text-muted {
+    @apply text-neutral-500;
   }
 
-  .text-gradient {
-    @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent;
+  .text-subtle {
+    @apply text-neutral-400;
+  }
+
+  /* 스무스 스크롤 컨테이너 */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .smooth-scroll {
+      scroll-behavior: auto;
+    }
   }
 }

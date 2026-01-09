@@ -49,7 +49,7 @@ export function TestPage() {
       }
 
       setIsTransitioning(false);
-    }, 400);
+    }, 300);
   };
 
   const handlePrev = () => {
@@ -68,14 +68,14 @@ export function TestPage() {
     return (
       <Layout>
         <div className="flex items-center justify-center min-h-screen">
-          <p>문제가 발생했습니다.</p>
+          <p className="text-neutral-500">문제가 발생했습니다.</p>
         </div>
       </Layout>
     );
   }
 
   return (
-    <Layout className="bg-gray-50">
+    <Layout className="bg-neutral-50">
       <div className="pt-4 pb-8">
         {/* Progress Bar */}
         <ProgressBar current={currentQuestion + 1} total={TOTAL_QUESTIONS} />
@@ -84,69 +84,75 @@ export function TestPage() {
         <AnimatePresence mode="wait">
           <motion.div
             key={question.id}
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.3 }}
-            className="mt-8"
+            exit={{ opacity: 0, x: -30 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            className="mt-12"
           >
-            {/* Question Text */}
-            <div className="text-center mb-8">
-              <span className="inline-block px-3 py-1 bg-primary-100 text-primary-600 rounded-full text-sm font-medium mb-4">
+            {/* Question Number */}
+            <div className="mb-8">
+              <span className="text-sm font-medium text-neutral-400 tracking-wide">
                 Q{currentQuestion + 1}
               </span>
-              <h2 className="text-xl md:text-2xl font-bold text-gray-800 leading-relaxed">
-                {question.text}
-              </h2>
             </div>
+
+            {/* Question Text */}
+            <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 leading-relaxed tracking-tight mb-12">
+              {question.text}
+            </h2>
 
             {/* Options */}
             <div className="space-y-4">
               <motion.button
-                whileTap={{ scale: 0.98 }}
+                whileTap={{ scale: 0.99 }}
                 onClick={() => handleSelect('A')}
                 disabled={isTransitioning}
-                className={`w-full p-5 text-left bg-white rounded-xl border-2 transition-all duration-200 ${
+                className={`w-full p-6 text-left rounded-2xl border transition-all duration-200 ${
                   selectedOption === 'A'
-                    ? 'border-primary-500 bg-primary-50 ring-2 ring-primary-200'
-                    : 'border-gray-200 hover:border-primary-300 hover:bg-gray-50'
+                    ? 'border-neutral-900 bg-neutral-50'
+                    : 'border-neutral-200 bg-white hover:border-neutral-400'
                 }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-4">
                   <span
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium shrink-0 transition-colors ${
                       selectedOption === 'A'
-                        ? 'bg-primary-500 text-white'
-                        : 'bg-gray-100 text-gray-500'
+                        ? 'bg-neutral-900 text-white'
+                        : 'bg-neutral-100 text-neutral-500'
                     }`}
                   >
                     A
                   </span>
-                  <span className="text-gray-800 font-medium">{question.optionA.text}</span>
+                  <span className="text-neutral-800 font-medium leading-relaxed pt-1">
+                    {question.optionA.text}
+                  </span>
                 </div>
               </motion.button>
 
               <motion.button
-                whileTap={{ scale: 0.98 }}
+                whileTap={{ scale: 0.99 }}
                 onClick={() => handleSelect('B')}
                 disabled={isTransitioning}
-                className={`w-full p-5 text-left bg-white rounded-xl border-2 transition-all duration-200 ${
+                className={`w-full p-6 text-left rounded-2xl border transition-all duration-200 ${
                   selectedOption === 'B'
-                    ? 'border-primary-500 bg-primary-50 ring-2 ring-primary-200'
-                    : 'border-gray-200 hover:border-primary-300 hover:bg-gray-50'
+                    ? 'border-neutral-900 bg-neutral-50'
+                    : 'border-neutral-200 bg-white hover:border-neutral-400'
                 }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-4">
                   <span
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium shrink-0 transition-colors ${
                       selectedOption === 'B'
-                        ? 'bg-primary-500 text-white'
-                        : 'bg-gray-100 text-gray-500'
+                        ? 'bg-neutral-900 text-white'
+                        : 'bg-neutral-100 text-neutral-500'
                     }`}
                   >
                     B
                   </span>
-                  <span className="text-gray-800 font-medium">{question.optionB.text}</span>
+                  <span className="text-neutral-800 font-medium leading-relaxed pt-1">
+                    {question.optionB.text}
+                  </span>
                 </div>
               </motion.button>
             </div>
@@ -154,7 +160,7 @@ export function TestPage() {
         </AnimatePresence>
 
         {/* Navigation Buttons */}
-        <div className="flex gap-3 mt-8">
+        <div className="flex gap-3 mt-12">
           <Button
             onClick={handlePrev}
             variant="secondary"

@@ -10,18 +10,18 @@ export function ProgressBar({ current, total }: ProgressBarProps) {
 
   return (
     <div className="w-full">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-sm text-gray-500">진행률</span>
-        <span className="text-sm font-medium text-primary-500">
+      <div className="flex justify-between items-center mb-3">
+        <span className="text-sm text-neutral-400">Progress</span>
+        <span className="text-sm font-medium text-neutral-900 tabular-nums">
           {current} / {total}
         </span>
       </div>
-      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+      <div className="h-1 bg-neutral-200 rounded-full overflow-hidden">
         <motion.div
-          className="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full"
+          className="h-full bg-neutral-900 rounded-full"
           initial={{ width: 0 }}
           animate={{ width: `${percentage}%` }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
         />
       </div>
     </div>

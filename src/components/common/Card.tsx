@@ -8,13 +8,15 @@ interface CardProps {
 }
 
 export function Card({ children, className = '', animate = true }: CardProps) {
+  const cardStyles = 'bg-white rounded-2xl p-8 border border-neutral-100';
+
   if (animate) {
     return (
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`bg-white rounded-2xl shadow-md p-6 ${className}`}
+        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+        className={`${cardStyles} ${className}`}
       >
         {children}
       </motion.div>
@@ -22,7 +24,7 @@ export function Card({ children, className = '', animate = true }: CardProps) {
   }
 
   return (
-    <div className={`bg-white rounded-2xl shadow-md p-6 ${className}`}>
+    <div className={`${cardStyles} ${className}`}>
       {children}
     </div>
   );

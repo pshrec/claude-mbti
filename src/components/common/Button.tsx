@@ -16,17 +16,21 @@ export function Button({
   disabled,
   ...props
 }: ButtonProps) {
-  const baseStyles = 'font-semibold rounded-xl transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100';
+  const baseStyles = `
+    font-medium rounded-xl transition-all duration-200
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2
+    disabled:opacity-40 disabled:cursor-not-allowed
+  `;
 
   const variants = {
-    primary: 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-lg hover:shadow-xl hover:scale-105',
-    secondary: 'bg-white text-gray-700 border border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300',
-    ghost: 'bg-transparent text-gray-600 hover:bg-gray-100',
+    primary: 'bg-neutral-900 text-white hover:bg-neutral-800 active:scale-[0.98]',
+    secondary: 'bg-white text-neutral-900 border border-neutral-200 hover:border-neutral-400 hover:bg-neutral-50 active:scale-[0.98]',
+    ghost: 'bg-transparent text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100',
   };
 
   const sizes = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
+    sm: 'px-4 py-2.5 text-sm',
+    md: 'px-6 py-3.5 text-base',
     lg: 'px-8 py-4 text-lg',
   };
 
